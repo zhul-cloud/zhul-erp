@@ -1,0 +1,8 @@
+{
+  "name":"入库作业",
+  "pid": 100000,
+  "path":"/wms/input",
+  "status":1,
+  "sort": 2,
+  "type":"2"
+}

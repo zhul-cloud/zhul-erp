@@ -1,0 +1,8 @@
+{
+  "id": 2,
+  "code": "costType",
+  "name": "成本中心-成本类型",
+  "sort": 1,
+  "status": 0,
+  "remark": "成本类型-字典"
+}

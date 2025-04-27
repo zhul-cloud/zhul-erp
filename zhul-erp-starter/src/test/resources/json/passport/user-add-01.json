@@ -1,0 +1,15 @@
+{
+  "type": 1,
+  "name": "张三",
+  "username": "zhangsan",
+  "phone": "13671885656",
+  "deptCode": "D1001",
+  "status": 1,
+  "pid": 0,
+  "roleCodes": [
+    "R1001"
+  ],
+  "warehouseCodes": [
+    "D001"
+  ]
+}

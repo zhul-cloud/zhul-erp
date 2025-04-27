@@ -1,0 +1,13 @@
+{
+  "type": 1,
+  "name": "kevin",
+  "username": "kevin",
+  "password": "kevin@123",
+  "phone": "13671803404",
+  "deptId": 1,
+  "status": 1,
+  "pid": 0,
+  "roleIds": [
+    1
+  ]
+}

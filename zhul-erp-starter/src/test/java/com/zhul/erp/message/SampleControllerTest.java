@@ -1,4 +1,4 @@
-package com.wanquan.sod.tms.rpc;
+package com.zhul.erp.message;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;

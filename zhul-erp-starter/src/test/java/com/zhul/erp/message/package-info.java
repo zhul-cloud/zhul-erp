@@ -3,4 +3,4 @@
  * 
  * @author fulan.zjf
  */
-package com.wanquan.sod.tms.web;
+package com.zhul.erp.message;

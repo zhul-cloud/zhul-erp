@@ -1,4 +1,4 @@
-package com.wanquan.sod.tms.message;
+package com.zhul.erp.h5;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;

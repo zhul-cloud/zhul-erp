@@ -1,4 +1,4 @@
-package com.wanquan.sod.tms.scheduler;
+package com.zhul.erp.rpc;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.wanquan.sod.tms.web;
+package com.zhul.erp.web;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;

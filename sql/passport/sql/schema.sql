@@ -27,37 +27,37 @@ CREATE TABLE `resource`
 -- ----------------------------
 -- Table structure for role
 -- ----------------------------
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role`
+drop table if exists `role`;
+create table role
 (
-    `id`          int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `pid`         int(11) NOT NULL DEFAULT 0 COMMENT '父ID',
-    `code`        varchar(13)  NOT NULL DEFAULT '' COMMENT '角色编码（RL+主键，形如RL100）',
-    `name`        varchar(32)  NOT NULL DEFAULT '' COMMENT '角色名称',
-    `org_scope`   tinyint(2)   NOT NULL DEFAULT 0 COMMENT '数据权限范围(0-无权限、1-全部数据、2-自定义数据、3-仅本人数据）',
-    `status`      tinyint(2)   NOT NULL DEFAULT '1' COMMENT '状态（0-禁用、1-启用）',
-    `remark`      varchar(128) NOT NULL DEFAULT '' COMMENT '备注',
-    `create_time` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `create_by`   varchar(32)  NOT NULL DEFAULT 'sys' COMMENT '创建者',
-    `update_time` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-    `update_by`   varchar(32)  NOT NULL DEFAULT 'sys' COMMENT '更新者',
-    PRIMARY KEY (`id`)
+    id               int auto_increment comment '主键'
+        primary key,
+    code             varchar(12)  default ''                not null comment '角色编码',
+    name             varchar(32)  default ''                not null comment '角色名称',
+    permission_scope tinyint(1)   default 0                 not null comment '数据权限范围(0-无权限、1-全部数据、2-自定义数据、3-仅本人数据）',
+    status           tinyint(1)   default 1                 not null comment '状态（0-禁用、1-启用）',
+    remark           varchar(128) default ''                not null comment '备注',
+    create_time      datetime     default CURRENT_TIMESTAMP not null comment '创建时间',
+    create_by        varchar(32)  default 'sys'             not null comment '创建者',
+    update_time      datetime     default CURRENT_TIMESTAMP not null comment '更新时间',
+    update_by        varchar(32)  default 'sys'             not null comment '更新者'
 ) ENGINE = InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COMMENT ='角色表';
 
 -- ----------------------------
 -- Table structure for role_resource
 -- ----------------------------
-DROP TABLE IF EXISTS `role_resource`;
-CREATE TABLE `role_resource`
+drop table if exists `role_resource`;
+create table role_resource
 (
-    `id`            int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `role_code`     varchar(12) NOT NULL DEFAULT '' COMMENT '角色编码',
-    `resource_code` varchar(14) NOT NULL DEFAULT '' COMMENT '资源编码',
-    `create_time`   datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `create_by`     varchar(32) NOT NULL DEFAULT 'sys' COMMENT '创建人',
-    `update_time`   datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-    `update_by`     varchar(32) NOT NULL DEFAULT 'sys' COMMENT '更新人',
-    PRIMARY KEY (`id`)
+    id            int auto_increment comment '主键'
+        primary key,
+    role_code     varchar(12) default ''                not null comment '角色编码',
+    resource_id   int         default 0                 not null comment '资源编号',
+    resource_code varchar(14) default ''                not null comment '资源编码',
+    create_time   datetime    default CURRENT_TIMESTAMP not null comment '创建时间',
+    create_by     varchar(32) default 'sys'             not null comment '创建人',
+    update_time   datetime    default CURRENT_TIMESTAMP not null comment '更新时间',
+    update_by     varchar(32) default 'sys'             not null comment '更新人'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色资源表';
 
 -- ----------------------------
@@ -102,24 +102,26 @@ CREATE TABLE `department`
 -- ----------------------------
 -- Table structure for user_basic
 -- ----------------------------
-DROP TABLE IF EXISTS `user_basic`;
-CREATE TABLE `user_basic`
+drop table if exists `user_basic`;
+create table user_basic
 (
-    `id`             int(11)       NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `pid`            int(11)       NOT NULL DEFAULT '0' COMMENT '上级领导ID',
-    `code`           varchar(13)   NOT NULL DEFAULT '' COMMENT '用户编号（U+主键）',
-    `name`           varchar(16)   NOT NULL DEFAULT '' COMMENT '用户姓名',
-    `type`           tinyint(2)    NOT NULL DEFAULT '1' COMMENT '用户类型（1-员工）',
-    `phone`          varchar(16)   NOT NULL DEFAULT '' COMMENT '手机号',
-    `email`          varchar(100)  NOT NULL DEFAULT '' COMMENT '邮箱地址',
-    `avatar_url`     varchar(164)  NOT NULL DEFAULT '' COMMENT '头像地址',
-    `nickname`       varchar(64)   NOT NULL DEFAULT '' COMMENT '昵称',
-    `status`         tinyint(2)    NOT NULL DEFAULT '1' COMMENT '状态（0-禁用、1-启用）',
-    `create_time`    datetime      NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `create_by`      varchar(32)   NOT NULL DEFAULT 'sys' COMMENT '创建人',
-    `update_time`    datetime      NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-    `update_by`      varchar(32)   NOT NULL DEFAULT 'sys' COMMENT '更新人',
-    PRIMARY KEY (`id`)
+    id          int auto_increment comment '主键'
+        primary key,
+    pid         int          default 0                 not null comment '上级领导ID',
+    name        varchar(16)  default ''                not null comment '用户姓名',
+    type        tinyint      default 1                 not null comment '用户类型（1-员工）',
+    username    varchar(20)  default ''                not null comment '用户名',
+    phone       varchar(16)  default ''                not null comment '手机号',
+    dept_id     int          default 0                 not null comment '部门编号',
+    role_code   varchar(12)  default ''                not null comment '角色编码',
+    email       varchar(100) default ''                not null comment '邮箱地址',
+    avatar_url  varchar(164) default ''                not null comment '头像地址',
+    nickname    varchar(64)  default ''                not null comment '昵称',
+    status      tinyint      default 1                 not null comment '状态（0-禁用、1-启用）',
+    create_time datetime     default CURRENT_TIMESTAMP not null comment '创建时间',
+    create_by   varchar(32)  default 'sys'             not null comment '创建人',
+    update_time datetime     default CURRENT_TIMESTAMP not null comment '更新时间',
+    update_by   varchar(32)  default 'sys'             not null comment '更新人'
 ) ENGINE=InnoDB AUTO_INCREMENT=1000000000 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息表';
 
 -- ----------------------------
@@ -182,19 +184,20 @@ CREATE TABLE `account_local_auth`
 -- ----------------------------
 -- Table structure for account_access_token
 -- ----------------------------
-DROP TABLE IF EXISTS `account_access_token`;
-CREATE TABLE `account_access_token`
+drop table if exists `account_access_token`;
+create table account_access_token
 (
-    `id`           int(11)      NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `account_id`   int(11)      NOT NULL DEFAULT 0 COMMENT '账号ID',
-    `access_token` varchar(128) NOT NULL DEFAULT '' COMMENT '认证Token',
-    `status`       tinyint(2)   NOT NULL DEFAULT '1' COMMENT '状态(0-失效、1-有效)',
-    `expiry_time`  datetime     NOT NULL DEFAULT '2199-01-01 00:00:00' COMMENT '到期时间',
-    `create_time`  datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `create_by`    varchar(32)  NOT NULL DEFAULT 'sys' COMMENT '创建人',
-    `update_time`  datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-    `update_by`    varchar(32)  NOT NULL DEFAULT 'sys' COMMENT '更新人',
-    PRIMARY KEY (`id`)
+    id           int auto_increment comment '主键'
+        primary key,
+    user_id      int          default 0                     not null comment '用户ID',
+    account_id   int          default 0                     not null comment '账号ID',
+    access_token varchar(128) default ''                    not null comment '认证Token',
+    status       tinyint      default 1                     not null comment '状态(0-失效、1-有效)',
+    expiry_time  datetime     default '2199-01-01 00:00:00' not null comment '到期时间',
+    create_time  datetime     default CURRENT_TIMESTAMP     not null comment '创建时间',
+    create_by    varchar(32)  default 'sys'                 not null comment '创建人',
+    update_time  datetime     default CURRENT_TIMESTAMP     not null comment '更新时间',
+    update_by    varchar(32)  default 'sys'                 not null comment '更新人'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='账号访问Token表';
 
 -- ----------------------------
